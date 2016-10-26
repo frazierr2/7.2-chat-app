@@ -15,7 +15,7 @@ $icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
 img {
   max-width: 100%;
 }
-body{
+.contain-box{
   background-image: url('http://www.free-vectors.com/images/Backgrounds/133-retro-grunge-stripes-background-design.jpg');
   background-size: cover;
   background-repeat: no-repeat;
@@ -31,7 +31,10 @@ body{
   height: 100px;
   background-color: #003A4F;
   margin-bottom: 0;
-  padding-top: 100px;
+
+}
+.la-title{
+  color: white;
 }
 .chat-window{
   background-color: white;
@@ -39,4 +42,12 @@ body{
 }
 .chat-box{
   background-color: #3F3F3F;
+}
+.login-box{
+background-color: grey;
+
+.la-login{
+  color: white;
+  text-transform: uppercase;
+}
 }
