@@ -1,0 +1,42 @@
+
+// Bootstrap Variables
+$icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
+
+// Import Bootstrap
+@import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+body{
+  background-image: url('http://www.free-vectors.com/images/Backgrounds/133-retro-grunge-stripes-background-design.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.banner{
+  font-size: 45px;
+  text-align: center;
+  font-weight: bold;
+  background-color: #003A4F;
+  color: white;
+}
+.bottom-banner{
+  height: 100px;
+  background-color: #003A4F;
+  margin-bottom: 0;
+  padding-top: 100px;
+}
+.chat-window{
+  background-color: white;
+  height: 300px;
+}
+.chat-box{
+  background-color: #3F3F3F;
+}
