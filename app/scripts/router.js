@@ -12,7 +12,22 @@ var AppRouter = Backbone.Router.extend({
   'chat/': 'chat'
 },
 initialize: function(){
-  this.username = ''
+  this.username = '';
+},
+index: function(){
+    ReactDOM.render(
+      React.createElement(LoginComponent, {router: this}),
+      document.getElementById('app')
+    );
+  },
+chat: function(){
+  var collection = new MessageCollection();
+  collection.fetch();
+
+  ReactDOM.render(
+    React.createElement(MessagingComponent, {collection: collection, username: this.username}),
+    document.getElementById('app')
+  );
 }
 });
 

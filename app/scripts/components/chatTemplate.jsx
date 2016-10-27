@@ -3,19 +3,19 @@ var React = require('react');
 var TemplateComponent = React.createClass({
   render: function(){
     return (
-      <div class="contain-box">
-        
-        <div class="well banner">The Iron Messenger</div>
+      <div className="contain-box">
 
-        <div class="container">
-          <div class="row">
+        <div className="well banner">The Iron Messenger</div>
+
+        <div className="container">
+          <div className="row">
 
               {this.props.children}
 
           </div>
         </div>
 
-        <footer class="well bottom-banner"></footer>
+        <footer className="well bottom-banner"></footer>
       </div>
     );
   }

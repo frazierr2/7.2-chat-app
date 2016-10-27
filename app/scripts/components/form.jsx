@@ -2,12 +2,39 @@ var React = require('react');
 var Backbone = require('backbone');
 require('backbone-react-component');
 
+var TemplateComponent = require('./chatTemplate.jsx').TemplateComponent;
+var MessageCollection = require('../models/models.js').MessageCollection;
+
 var MessageForm = React.createClass({
+  mixins: [Backbone.React.Component.mixin],
+// CHECK*******************************
+  getInitialState: function(){
+    return {
+      content: '',
+      username: ''
+    }
+  },
+  handleMessage: function(e){
+    var content = e.target.value;
+    this.setState({content: content});
+  },
+  handleSubmit: function(e){
+      e.preventDefault();
+
+      var timeStamp = {
+        content: this.state.content,
+        time: new Date().getTime(),
+        username: this.state.username
+      };
+      this.getCollection().create(timeStamp);
+      this.setState({content: ''});
+  },
+  // #######################################
   render: function(){
     return (
-      <form className="form-group">
-        <label className="la-title" for="userInput">Message</label>
-         <input type="text" className="form-control" id="userInput" placeholder="Message" />
+      <form onSubmit={this.handleSubmit} className="form-group">
+        <label className="la-title" htmlFor="userInput">Message</label>
+         <input onChange={this.handleMessage} type="text" className="form-control" value={this.state.content} id="userInput" placeholder="Message" />
          <button type="submit" className="btn btn-primary sub-button"><strong>Send</strong></button>
       </form>
     )
@@ -15,19 +42,32 @@ var MessageForm = React.createClass({
 });
 
 var MessageListing = React.createClass({
+  mixins: [Backbone.React.Component.mixin],
   render: function(){
+    var collection = this.getCollection();
+    var groupMessages = collection.map(function(messages){
+      return <li key={messages.get('_id') || messages.cid}>
+        {messages.get('content')} {messages.get('username')}
+        {messages.get('time')}
+      </li>;
+    });
     return (
-      <div className="chat-window"></div>
-    )
+      <ul className="chat-window">
+        {groupMessages}
+      </ul>
+    );
   }
 });
 
 var MessagingComponent = React.createClass({
+  mixins: [Backbone.React.Component.mixin],
   render: function(){
+    return (
     <TemplateComponent className="col-md-6 col-md-offset-3 well chat-box">
-      <MessageForm />
       <MessageListing />
+      <MessageForm />
     </TemplateComponent>
+    )
   }
 });
 
