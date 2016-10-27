@@ -22,7 +22,11 @@ index: function(){
   },
 chat: function(){
   var collection = new MessageCollection();
-  collection.fetch();
+  setInterval(function(){
+    collection.fetch().then(function(){
+      self.setState({collection: collection})
+    });
+  },30000)
 
   ReactDOM.render(
     React.createElement(MessagingComponent, {collection: collection, username: this.username}),
