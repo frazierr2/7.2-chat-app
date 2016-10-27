@@ -24,7 +24,7 @@ var MessageForm = React.createClass({
       var timeStamp = {
         content: this.state.content,
         time: new Date().getTime(),
-        username: this.state.username
+        username: this.props.username
       };
       this.getCollection().create(timeStamp);
       this.setState({content: ''});
@@ -47,7 +47,8 @@ var MessageListing = React.createClass({
     var collection = this.getCollection();
     var groupMessages = collection.map(function(messages){
       return <li key={messages.get('_id') || messages.cid}>
-        {messages.get('content')} {messages.get('username')}
+        {messages.get('username')}
+        {messages.get('content')}
         {messages.get('time')}
       </li>;
     });
@@ -61,11 +62,26 @@ var MessageListing = React.createClass({
 
 var MessagingComponent = React.createClass({
   mixins: [Backbone.React.Component.mixin],
+
+  getDefaultProps: function(){
+    var collection = new MessageCollection();
+    return {
+      collection: collection
+    };
+  },
+  componentWillMount: function(){
+    var self = this;
+    setInterval(function(){
+      self.props.collection.fetch().then(function(){
+      self.setState({collection: collection})
+      });
+    },30000);
+  },
   render: function(){
     return (
     <TemplateComponent className="col-md-6 col-md-offset-3 well chat-box">
       <MessageListing />
-      <MessageForm />
+      <MessageForm username={this.props.username}/>
     </TemplateComponent>
     )
   }

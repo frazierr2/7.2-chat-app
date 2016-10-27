@@ -16,20 +16,15 @@ initialize: function(){
 },
 index: function(){
     ReactDOM.render(
+      //passing the router to the login component
       React.createElement(LoginComponent, {router: this}),
       document.getElementById('app')
     );
   },
 chat: function(){
-  var collection = new MessageCollection();
-  setInterval(function(){
-    collection.fetch().then(function(){
-      self.setState({collection: collection})
-    });
-  },30000)
-
+  console.log(this.username);
   ReactDOM.render(
-    React.createElement(MessagingComponent, {collection: collection, username: this.username}),
+    React.createElement(MessagingComponent, {username: this.username}),
     document.getElementById('app')
   );
 }

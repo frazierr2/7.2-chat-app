@@ -18,8 +18,8 @@ var LoginForm = React.createClass({
 handleSubmit: function(e){
   e.preventDefault();
   var router = this.props.router;
-
   router.username = this.state.username;
+  // console.log(router.username);
   router.navigate('chat/', {trigger: true});
   this.setState({username: ''});
 },
@@ -39,6 +39,7 @@ handleSubmit: function(e){
 
 var LoginComponent = React.createClass({
   render: function(){
+    // console.log('username',this.props.router.username);
     return (
     <TemplateComponent>
     <LoginForm router={this.props.router} className="col-md-4 col-md-offset-4 well login-box" />
