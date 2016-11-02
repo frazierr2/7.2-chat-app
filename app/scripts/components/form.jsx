@@ -71,15 +71,15 @@ var MessagingComponent = React.createClass({
   },
   componentWillMount: function(){
     var self = this;
+    self.props.collection.fetch();
     setInterval(function(){
-      self.props.collection.fetch().then(function(){
-      self.setState({collection: collection})
-      });
+      self.props.collection.fetch();
     },30000);
   },
   render: function(){
     return (
     <TemplateComponent className="col-md-6 col-md-offset-3 well chat-box">
+      
       <MessageListing />
       <MessageForm username={this.props.username}/>
     </TemplateComponent>

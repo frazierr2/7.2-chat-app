@@ -5,7 +5,7 @@ require('backbone-react-component');
 var TemplateComponent = require('./chatTemplate.jsx').TemplateComponent;
 
 var LoginForm = React.createClass({
-  mixins: [Backbone.React.Component.mixin],
+
   getInitialState: function(){
     return{
       username: ''
@@ -41,9 +41,11 @@ var LoginComponent = React.createClass({
   render: function(){
     // console.log('username',this.props.router.username);
     return (
-    <TemplateComponent>
-    <LoginForm router={this.props.router} className="col-md-4 col-md-offset-4 well login-box" />
+    <TemplateComponent className="col-md-4 col-md-offset-4 well login-box">
+
+    <LoginForm router={this.props.router}  />
     </TemplateComponent>
+
     )
   }
 });

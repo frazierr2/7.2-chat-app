@@ -1,6 +1,11 @@
 var React = require('react');
 
 var TemplateComponent = React.createClass({
+  getDefaultProps: function(){
+    return{
+      className: "col-md-4"
+    }
+  },
   render: function(){
     return (
       <div className="contain-box">
@@ -9,9 +14,9 @@ var TemplateComponent = React.createClass({
 
         <div className="container">
           <div className="row">
-
+            <div className={this.props.className}>
               {this.props.children}
-
+            </div>
           </div>
         </div>
 
